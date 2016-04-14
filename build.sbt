@@ -8,9 +8,6 @@ description := "A Simple HTML5 DSL for Scala"
 
 scalaVersion := "2.11.8"
 
-// Note: Use "++ 2.11.8" to select a specific version when building
-crossScalaVersions := Seq("2.10.6", "2.11.8")
-
 scalacOptions := Seq("-unchecked", "-deprecation", "-language:implicitConversions", "-feature", "-Xlint", "-optimise", "-Yinline-warnings")
 
 libraryDependencies ++= Seq(
