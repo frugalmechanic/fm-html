@@ -1,8 +1,13 @@
 package fm.html
 
+import java.nio.file.{Files, Paths}
+import java.nio.charset.StandardCharsets.UTF_8
+
 object Html5CodeGen {
   def main(args: Array[String]): Unit = {
-    println("""//
+    val sb: StringBuilder = new StringBuilder()
+    
+    sb ++= """//
 // THIS FILE IS AUTO-GENERATED!  DO NOT MODIFY IT!
 // THIS FILE IS AUTO-GENERATED!  DO NOT MODIFY IT!
 // THIS FILE IS AUTO-GENERATED!  DO NOT MODIFY IT!
@@ -14,7 +19,14 @@ package fm.html
 import java.net.{URLEncoder, URLDecoder}
 import org.apache.commons.lang3.StringEscapeUtils
 
-trait Html5Tag
+trait Html5Tag {
+"""
+    sb ++= globalAttributes.map{ fixParamName }.map{ p: String => s"  def $p: String" }.mkString("\n")
+    sb ++= "\n"
+    sb ++= globalBooleanAttributes.map{ fixParamName }.map{ p: String => s"  def $p: Boolean" }.mkString("\n")
+    
+    sb ++= """
+}
 
 object Html5 extends Html5
 
@@ -34,6 +46,12 @@ trait Html5 {
   final def urlencode(s: String): String = URLEncoder.encode(s,"UTF-8")
   final def urldecode(s: String): String = URLDecoder.decode(s, "UTF-8")
 
+  final def capture(f: Html5RenderCtx => Unit): String = {
+    val builder: Html5StringBuilder = new Html5StringBuilder
+    f(builder.html5RenderCtx)
+    builder.result()
+  }
+
   protected def appendExtra(prefix: String, map: Map[String, String])(implicit ctx: Html5RenderCtx): Unit = {
     map.filterNot{ case (name, value) => name == null || value == null }.foreach{ case (name, value) => ctx.append(" "+prefix+name+"=\""+h(value)+"\"") }
   }
@@ -50,49 +68,58 @@ trait Html5 {
   final def copy(implicit ctx: Html5RenderCtx): Unit = ctx.append("&copy;")
   final def middot(implicit ctx: Html5RenderCtx): Unit = ctx.append("&middot;")
 
-  final def comment(body: => String)(implicit ctx: Html5RenderCtx): Unit = {
+  final def comment[T](body: => T)(implicit ctx: Html5RenderCtx): Unit = {
     ctx.appendOpeningIndent()
     ctx.append("<!--")
     ctx.incrementIndent()
-    val b = body
+    val b: String = ctx.valueToString(body)
     if (null != b && b != "") ctx.append(" "+b+" ")
     ctx.decrementIndent()
     ctx.appendClosingIndent()
     ctx.append("-->")
   }
 
-  final def CDATA(body: => String)(implicit ctx: Html5RenderCtx): Unit = {
+  final def CDATA[T](body: => T)(implicit ctx: Html5RenderCtx): Unit = {
     ctx.append("<![CDATA[")
-    ctx.append(body)
+    ctx.append(ctx.valueToString(body))
     ctx.append("]]>")
   }
 
   final def DOCTYPE(tpe: String = "html")(implicit ctx: Html5RenderCtx): Unit = ctx.append(s"<!DOCTYPE $tpe>")
-    """)
+    """
     
-    allTags.map{ genCode }.foreach { println }
+    allTags.map{ genCode }.foreach { sb ++= _ }
     
-    println("}")
+    sb ++= "}"
+    
+    Files.write(Paths.get("src/main/scala/fm/html/Html5.scala"), sb.toString.getBytes(UTF_8))
   }
 
+  private def paramDefsForTag(tag: TagDef, extra: Seq[String], useRequiredParamDefault: Boolean = false, useSelfDefault: Boolean = false): String = {
+    def defaultForParam(p: String, default: String): String = if (useSelfDefault) s" = self.$p" else default
+
+    val requiredParams: Seq[String] = tag.required.map{ fixParamName }.map{ p: String => s"$p: String${defaultForParam(p, if (useRequiredParamDefault) " = null" else "")}" }
+    val optionalParams: Seq[String] = tag.optional.map{ fixParamName }.map{ p: String => s"$p: String${defaultForParam(p, " = null")}" }
+    val boolParams: Seq[String] = tag.boolean.map{ fixParamName }.map{ p: String => s"$p: Boolean${defaultForParam(p, " = false")}" }
+    val extraParams: Seq[String] = extra.map{ fixParamName }.map{ p: String => s"$p: Map[String,String]${defaultForParam(p, " = Map.empty")}" }
+    
+    (requiredParams ++ optionalParams ++ boolParams ++ extraParams).mkString(", ")
+  }
+  
   def genCode(tag: TagDef): String = {
-    val name = tag.name
-    val className = name.toUpperCase
+    val name: String = tag.name
+    val className: String = name.toUpperCase
     
     // <object> has a data parameter so we can't use that name
-    val useDataParam = name != "object"
+    val useDataParam: Boolean = name != "object"
     
-    val extra = if (useDataParam) Seq("data", "aria", "attrs") else Seq("aria", "attrs")
+    val extra: Seq[String] = if (useDataParam) Seq("data", "aria", "attrs") else Seq("aria", "attrs")
     
-    val requiredParams = tag.required.map{ fixParamName(_) + ": String" }
-    //val requiredParams = tag.required.map{ fixParamName(_) + ": String = null" }
-    val optionalParams = tag.optional.map{ fixParamName(_) + ": String = null" }
-    val boolParams = tag.boolean.map{ fixParamName(_) + ": Boolean = false" }
-    val extraParams = extra.map{ fixParamName(_) + ": Map[String,String] = Map.empty" }
+    val caseClassParams: String = paramDefsForTag(tag, extra, useRequiredParamDefault = true)
     
-    val paramsForDef = (requiredParams ++ optionalParams ++ boolParams ++ extraParams).mkString(", ")
+    val paramsForDef: String = paramDefsForTag(tag, extra, useSelfDefault = true)
     
-    val paramNames = (tag.required ++ tag.optional ++ tag.boolean ++ extra).map{ fixParamName }
+    val paramNames: Seq[String] = (tag.required ++ tag.optional ++ tag.boolean ++ extra).map{ fixParamName }
     
     val openBodyLines = Vector.newBuilder[String]
     
@@ -110,17 +137,17 @@ trait Html5 {
     val appendClosingIndent: String = if (tag.isBlock) """ctx.appendClosingIndent(); """ else ""
     
     if (tag.hasBody) {
-      val bodyParam = if (tag.hasBody && !tag.hasEmptyBody) "(body: => String)" else ""
-      val bodyCallCode = if (tag.hasBody && !tag.hasEmptyBody) " ctx.append(h(body)); " else ""
-      val noParamsApply = if (tag.required.isEmpty) s"""@inline final def apply${bodyParam}(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>");${incrementIndent}${bodyCallCode}this.close() }""" else ""
+      val (bodyParam,bodyType) = if (tag.hasBody && !tag.hasEmptyBody) ("(body: => T)", "[T]") else ("","")
+      val bodyCallCode = if (tag.hasBody && !tag.hasEmptyBody) " ctx.append(h(ctx.valueToString(body))); " else ""
+      val noParamsApply = if (tag.required.isEmpty) s"""@inline final def apply$bodyType${bodyParam}(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>");${incrementIndent}${bodyCallCode}this.close() }""" else ""
       val emptyArgsApply = if (tag.required.isEmpty && !tag.hasEmptyBody) s"""final def apply()(implicit ctx: Html5RenderCtx): Unit = apply("")""" else ""
       
       s"""
-  final val ${tag.valName}: $className = new $className
-  final class $className extends Html5Tag {
+  final val ${tag.valName}: $className = $className()
+  final case class $className($caseClassParams) extends Html5Tag { self =>
     $noParamsApply
     $emptyArgsApply
-    @inline final def apply($paramsForDef)$bodyParam(implicit ctx: Html5RenderCtx): Unit = { this.open(${paramNames.mkString(", ")});${bodyCallCode}this.close() }
+    @inline final def apply$bodyType($paramsForDef)$bodyParam(implicit ctx: Html5RenderCtx): Unit = { this.open(${paramNames.mkString(", ")});${bodyCallCode}this.close() }
     final def close()(implicit ctx: Html5RenderCtx): Unit = { ${decrementIndent}${appendClosingIndent}ctx.append("</${name}>") }
     final def open($paramsForDef)(implicit ctx: Html5RenderCtx): Unit = {
       $appendOpeningIndent
@@ -134,8 +161,8 @@ $openBody
     } else {
       val noParamsApply = if (tag.required.isEmpty) s"""final def apply(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>") }""" else ""
     s"""
-  final val ${tag.valName}: $className = new $className
-  final class $className extends Html5Tag {
+  final val ${tag.valName}: $className = $className()
+  final case class $className($caseClassParams) extends Html5Tag { self =>
     $noParamsApply
     final def apply($paramsForDef)(implicit ctx: Html5RenderCtx): Unit = {
       $appendOpeningIndent
@@ -144,7 +171,7 @@ $openBody
       ctx.append(">")
     }
   }
-""".stripLineEnd      
+""".stripLineEnd
     }
   }
 
@@ -177,7 +204,7 @@ $openBody
   def fixParamName(name: String): String = FixedParamNames.getOrElse(name, name)
   
   val FixedParamNames = Map(
-    "class" -> "clazz",
+    "class" -> "cls",
     "type" -> "tpe",
     "accept-charset" -> "acceptCharset",
     "http-equiv" -> "httpEquiv",

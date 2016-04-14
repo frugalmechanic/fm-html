@@ -10,6 +10,14 @@ trait Html5RenderCtx {
   def appendClosingIndent(): Unit
   def incrementIndent(): Unit
   def decrementIndent(): Unit
+  
+  def valueToString(v: Any): String = v match {
+    case _: Unit => ""// Don't output () for Unit
+    case null    => "null"  // null.toString() causes a NullPointerException
+    case opt: Option[_] => opt.map{ valueToString }.getOrElse("")
+    case arr: Array[_] => arr.map{ valueToString }.mkString(", ")
+    case _       => v.toString()
+  }
 }
 
 final case class ConciseHtml5RenderCtx(out: Appendable) extends Html5RenderCtx {
