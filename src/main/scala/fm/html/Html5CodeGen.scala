@@ -139,7 +139,7 @@ trait Html5 {
     if (tag.hasBody) {
       val (bodyParam,bodyType) = if (tag.hasBody && !tag.hasEmptyBody) ("(body: => T)", "[T]") else ("","")
       val bodyCallCode = if (tag.hasBody && !tag.hasEmptyBody) " ctx.append(h(ctx.valueToString(body))); " else ""
-      val noParamsApply = if (tag.required.isEmpty) s"""@inline final def apply$bodyType${bodyParam}(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>");${incrementIndent}${bodyCallCode}this.close() }""" else ""
+      val noParamsApply = if (tag.required.isEmpty) s"""final def apply$bodyType${bodyParam}(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>");${incrementIndent}${bodyCallCode}this.close() }""" else ""
       val emptyArgsApply = if (tag.required.isEmpty && !tag.hasEmptyBody) s"""final def apply()(implicit ctx: Html5RenderCtx): Unit = apply("")""" else ""
       
       s"""
@@ -147,7 +147,7 @@ trait Html5 {
   final case class $className($caseClassParams) extends Html5Tag { self =>
     $noParamsApply
     $emptyArgsApply
-    @inline final def apply$bodyType($paramsForDef)$bodyParam(implicit ctx: Html5RenderCtx): Unit = { this.open(${paramNames.mkString(", ")});${bodyCallCode}this.close() }
+    final def apply$bodyType($paramsForDef)$bodyParam(implicit ctx: Html5RenderCtx): Unit = { this.open(${paramNames.mkString(", ")});${bodyCallCode}this.close() }
     final def close()(implicit ctx: Html5RenderCtx): Unit = { ${decrementIndent}${appendClosingIndent}ctx.append("</${name}>") }
     final def open($paramsForDef)(implicit ctx: Html5RenderCtx): Unit = {
       $appendOpeningIndent
