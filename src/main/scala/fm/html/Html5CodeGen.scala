@@ -17,7 +17,7 @@ object Html5CodeGen {
 package fm.html
 
 import java.net.{URLEncoder, URLDecoder}
-import org.apache.commons.lang3.StringEscapeUtils
+import org.apache.commons.lang3.{StringEscapeUtils, StringUtils}
 
 trait Html5Tag {
 """
@@ -53,7 +53,7 @@ trait Html5 {
   }
 
   protected def appendExtra(prefix: String, map: Map[String, String])(implicit ctx: Html5RenderCtx): Unit = {
-    map.filterNot{ case (name, value) => name == null || value == null }.foreach{ case (name, value) => ctx.append(" "+prefix+name+"=\""+h(value)+"\"") }
+    map.filterNot{ case (name, value) => StringUtils.isBlank(name) || StringUtils.isBlank(value) }.foreach{ case (name, value) => ctx.append(" "+prefix+name+"=\""+h(value)+"\"") }
   }
 
   /** Append ESCAPED characters */
@@ -73,7 +73,7 @@ trait Html5 {
     ctx.append("<!--")
     ctx.incrementIndent()
     val b: String = ctx.valueToString(body)
-    if (null != b && b != "") ctx.append(" "+b+" ")
+    if (StringUtils.isNotBlank(b)) ctx.append(" "+b+" ")
     ctx.decrementIndent()
     ctx.appendClosingIndent()
     ctx.append("-->")
@@ -123,7 +123,7 @@ trait Html5 {
     
     val openBodyLines = Vector.newBuilder[String]
     
-    openBodyLines ++= (tag.required ++ tag.optional).map{ p: String => s"""if (${fixParamName(p)} ne null) ctx.append(" $p=\\""+h(${fixParamName(p)})+"\\"")""" }
+    openBodyLines ++= (tag.required ++ tag.optional).map{ p: String => s"""if (StringUtils.isNotBlank(${fixParamName(p)})) ctx.append(" $p=\\""+h(${fixParamName(p)})+"\\"")""" }
     openBodyLines ++= tag.boolean.map{ p: String => s"""if (${fixParamName(p)}) ctx.append(" $p")""" }
     if (useDataParam) openBodyLines += """appendExtra("data-", data)"""
     openBodyLines += """appendExtra("aria-", aria)"""
