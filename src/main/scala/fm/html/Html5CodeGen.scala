@@ -143,7 +143,7 @@ trait Html5 {
     if (tag.hasBody) {
       val (bodyParam,bodyType) = if (tag.hasBody && !tag.hasEmptyBody) ("(body: => T)", "[T]") else ("","")
       val bodyCallCode = if (tag.hasBody && !tag.hasEmptyBody) " ctx.append(h(ctx.valueToString(body))); " else ""
-      val noParamsApply = if (tag.required.isEmpty) s"""final def apply$bodyType${bodyParam}(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>");${incrementIndent}${bodyCallCode}this.close() }""" else ""
+      val noParamsApply = if (tag.required.isEmpty) s"""final def apply$bodyType${bodyParam}(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}this.open();${incrementIndent}${bodyCallCode}this.close() }""" else ""
       val emptyArgsApply = if (tag.required.isEmpty && !tag.hasEmptyBody) s"""final def apply()(implicit ctx: Html5RenderCtx): Unit = apply("")""" else ""
       
       s"""
