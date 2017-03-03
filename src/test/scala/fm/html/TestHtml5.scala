@@ -38,9 +38,4 @@ final class TestHtml5 extends FunSuite with Matchers {
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "") { "bar" } } should equal("""<div>bar</div>""")
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = null) { "bar" } } should equal("""<div>bar</div>""")
   }
-
-
-  def foo(implicit ctx: Html5RenderCtx): Unit = {
-    Html5.DIV(id = "foo", cls="class", title="Foo & Bar") { "bar" }
-  }
 }
