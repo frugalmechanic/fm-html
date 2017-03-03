@@ -22,11 +22,25 @@ final class TestHtml5 extends FunSuite with Matchers {
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "foo") { "bar" } } should equal("""<div id="foo">bar</div>""")
   }
 
+  test("Attributes") {
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "foo", cls="class", title="Foo & Bar", attrs = Map("non-standard" -> "non & standard"), data = Map("foo" -> "foo & data", "bar" -> "bar & data")) { "bar" } } should equal("""<div class="class" id="foo" title="Foo &amp; Bar" data-foo="foo &amp; data" data-bar="bar &amp; data" non-standard="non &amp; standard">bar</div>""")
+  }
+
   test("Body Test") {
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV() { "bar" } } should equal("""<div>bar</div>""")
   }
 
   test("No Body Test") {
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.br() } should equal("""<br>""")
+  }
+
+  test("Ignore Blank Attribute Values") {
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "") { "bar" } } should equal("""<div>bar</div>""")
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = null) { "bar" } } should equal("""<div>bar</div>""")
+  }
+
+
+  def foo(implicit ctx: Html5RenderCtx): Unit = {
+    Html5.DIV(id = "foo", cls="class", title="Foo & Bar") { "bar" }
   }
 }
