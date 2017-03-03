@@ -19,14 +19,14 @@ import org.scalatest.{FunSuite, Matchers}
 
 final class TestHtml5 extends FunSuite with Matchers {
   test("Basic Attribute + Body Test") {
-    Html5ConciseStringBuilder.capture{ implicit ctx => Html5.DIV(id = "foo") { "bar" } } should equal("""<div id="foo">bar</div>""")
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "foo") { "bar" } } should equal("""<div id="foo">bar</div>""")
   }
 
   test("Body Test") {
-    Html5ConciseStringBuilder.capture{ implicit ctx => Html5.DIV() { "bar" } } should equal("""<div>bar</div>""")
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV() { "bar" } } should equal("""<div>bar</div>""")
   }
 
   test("No Body Test") {
-    Html5ConciseStringBuilder.capture{ implicit ctx => Html5.br() } should equal("""<br>""")
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.br() } should equal("""<br>""")
   }
 }

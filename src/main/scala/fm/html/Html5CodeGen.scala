@@ -46,8 +46,12 @@ trait Html5 {
   final def urlencode(s: String): String = URLEncoder.encode(s,"UTF-8")
   final def urldecode(s: String): String = URLDecoder.decode(s, "UTF-8")
 
-  final def capture(f: Html5RenderCtx => Unit): String = {
-    val builder: Html5StringBuilder = new Html5StringBuilder
+  final def capture(f: Html5RenderCtx => Unit): String = captureFormatted(f)
+  final def captureFormatted(f: Html5RenderCtx => Unit): String = captureImpl(true)(f)
+  final def captureConcise(f: Html5RenderCtx => Unit): String = captureImpl(true)(f)
+
+  private def captureImpl(formatted: Boolean)(f: Html5RenderCtx => Unit): String = {
+    val builder: Html5StringBuilder = new Html5StringBuilder(formatted)
     f(builder.html5RenderCtx)
     builder.result()
   }
