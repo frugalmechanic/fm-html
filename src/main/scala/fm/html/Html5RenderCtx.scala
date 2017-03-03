@@ -1,5 +1,7 @@
 package fm.html
 
+import org.apache.commons.lang3.{StringEscapeUtils, StringUtils}
+
 object Html5RenderCtx {
   
 }
@@ -17,6 +19,16 @@ trait Html5RenderCtx {
     case opt: Option[_] => opt.map{ valueToString }.getOrElse("")
     case arr: Array[_] => arr.map{ valueToString }.mkString(", ")
     case _       => v.toString()
+  }
+
+  private[html] final def appendAttribute(name: String, value: String): Unit = {
+    if ((value eq null) || value == "" || StringUtils.isBlank(name)) return
+
+    append(" ")
+    append(name)
+    append("=\"")
+    append(StringEscapeUtils.escapeHtml4(value))
+    append("\"")
   }
 }
 

@@ -57,7 +57,7 @@ trait Html5 {
   }
 
   protected def appendExtra(prefix: String, map: Map[String, String])(implicit ctx: Html5RenderCtx): Unit = {
-    map.filterNot{ case (name, value) => name == null || value == null }.foreach{ case (name, value) => ctx.append(" "+prefix+name+"=\""+h(value)+"\"") }
+    map.foreach{ case (name, value) => ctx.appendAttribute(prefix+name, value) }
   }
 
   /** Append ESCAPED characters */
@@ -127,7 +127,7 @@ trait Html5 {
     
     val openBodyLines = Vector.newBuilder[String]
     
-    openBodyLines ++= (tag.required ++ tag.optional).map{ p: String => s"""if (${fixParamName(p)} ne null) ctx.append(" $p=\\""+h(${fixParamName(p)})+"\\"")""" }
+    openBodyLines ++= (tag.required ++ tag.optional).map{ p: String => s"""if (${fixParamName(p)} ne null) ctx.appendAttribute("$p", ${fixParamName(p)})""" }
     openBodyLines ++= tag.boolean.map{ p: String => s"""if (${fixParamName(p)}) ctx.append(" $p")""" }
     if (useDataParam) openBodyLines += """appendExtra("data-", data)"""
     openBodyLines += """appendExtra("aria-", aria)"""
