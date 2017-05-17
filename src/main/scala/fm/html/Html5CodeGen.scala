@@ -160,6 +160,8 @@ trait Html5 {
 $openBody
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       """.stripLineEnd
     } else {
@@ -172,8 +174,9 @@ $openBody
       $appendOpeningIndent
       ctx.append("<${name}")
 $openBody
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
 """.stripLineEnd
     }
