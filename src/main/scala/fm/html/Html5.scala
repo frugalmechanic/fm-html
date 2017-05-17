@@ -143,6 +143,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val abbr: ABBR = ABBR()
@@ -180,6 +182,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val address: ADDRESS = ADDRESS()
@@ -217,6 +221,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val area: AREA = AREA()
@@ -258,8 +264,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val article: ARTICLE = ARTICLE()
   final case class ARTICLE(accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -296,6 +303,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val aside: ASIDE = ASIDE()
@@ -333,6 +342,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val audio: AUDIO = AUDIO()
@@ -370,8 +381,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val b: B = B()
   final case class B(accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -408,6 +420,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val base: BASE = BASE()
@@ -441,8 +455,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val blockquote: BLOCKQUOTE = BLOCKQUOTE()
   final case class BLOCKQUOTE(cite: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -480,6 +495,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val body: BODY = BODY()
@@ -517,6 +534,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val br: BR = BR()
@@ -548,8 +567,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val button: BUTTON = BUTTON()
   final case class BUTTON(form: String = null, formaction: String = null, formenctype: String = null, formmethod: String = null, formtarget: String = null, name: String = null, tpe: String = null, value: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, autofocus: Boolean = false, disabled: Boolean = false, formnovalidate: Boolean = false, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -597,6 +617,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val canvas: CANVAS = CANVAS()
@@ -636,6 +658,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val caption: CAPTION = CAPTION()
@@ -673,6 +697,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val cite: CITE = CITE()
@@ -710,6 +736,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val code: CODE = CODE()
@@ -747,6 +775,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val col: COL = COL()
@@ -779,8 +809,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val colgroup: COLGROUP = COLGROUP()
   final case class COLGROUP(span: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -818,6 +849,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val command: COMMAND = COMMAND()
@@ -861,6 +894,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val datalist: DATALIST = DATALIST()
@@ -898,6 +933,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val dd: DD = DD()
@@ -935,6 +972,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val del: DEL = DEL()
@@ -974,6 +1013,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val details: DETAILS = DETAILS()
@@ -1012,6 +1053,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val dfn: DFN = DFN()
@@ -1049,6 +1092,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val dialog: DIALOG = DIALOG()
@@ -1087,6 +1132,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val div: DIV = DIV()
@@ -1124,6 +1171,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val dl: DL = DL()
@@ -1161,6 +1210,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val dt: DT = DT()
@@ -1198,6 +1249,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val em: EM = EM()
@@ -1235,6 +1288,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val embed: EMBED = EMBED()
@@ -1276,6 +1331,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val fieldset: FIELDSET = FIELDSET()
@@ -1316,6 +1373,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val figcaption: FIGCAPTION = FIGCAPTION()
@@ -1353,6 +1412,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val figure: FIGURE = FIGURE()
@@ -1390,6 +1451,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val footer: FOOTER = FOOTER()
@@ -1427,6 +1490,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val form: FORM = FORM()
@@ -1472,6 +1537,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val head: HEAD = HEAD()
@@ -1509,6 +1576,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val header: HEADER = HEADER()
@@ -1546,6 +1615,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val h1: H1 = H1()
@@ -1583,6 +1654,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val h2: H2 = H2()
@@ -1620,6 +1693,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val h3: H3 = H3()
@@ -1657,6 +1732,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val h4: H4 = H4()
@@ -1694,6 +1771,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val h5: H5 = H5()
@@ -1731,6 +1810,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val h6: H6 = H6()
@@ -1768,6 +1849,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val hr: HR = HR()
@@ -1805,6 +1888,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val html: HTML = HTML()
@@ -1843,6 +1928,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val i: I = I()
@@ -1880,6 +1967,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val iframe: IFRAME = IFRAME()
@@ -1924,6 +2013,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val img: IMG = IMG()
@@ -1962,8 +2053,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val input: INPUT = INPUT()
   final case class INPUT(accept: String = null, alt: String = null, autocomplete: String = null, form: String = null, formaction: String = null, formenctype: String = null, formmethod: String = null, formtarget: String = null, height: String = null, list: String = null, max: String = null, maxlength: String = null, min: String = null, name: String = null, pattern: String = null, placeholder: String = null, size: String = null, src: String = null, step: String = null, tpe: String = null, value: String = null, width: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, autofocus: Boolean = false, checked: Boolean = false, disabled: Boolean = false, formnovalidate: Boolean = false, multiple: Boolean = false, readonly: Boolean = false, required: Boolean = false, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -2023,8 +2115,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val ins: INS = INS()
   final case class INS(cite: String = null, datetime: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -2063,6 +2156,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val kbd: KBD = KBD()
@@ -2100,6 +2195,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val keygen: KEYGEN = KEYGEN()
@@ -2137,8 +2234,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val label: LABEL = LABEL()
   final case class LABEL(`for`: String = null, form: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -2177,6 +2275,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val legend: LEGEND = LEGEND()
@@ -2214,6 +2314,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val li: LI = LI()
@@ -2252,6 +2354,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val link: LINK = LINK()
@@ -2289,8 +2393,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val map: MAP = MAP()
   final case class MAP(name: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -2328,6 +2433,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val mark: MARK = MARK()
@@ -2365,6 +2472,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val menu: MENU = MENU()
@@ -2404,6 +2513,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val meta: META = META()
@@ -2439,8 +2550,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val meter: METER = METER()
   final case class METER(value: String = null, form: String = null, high: String = null, low: String = null, max: String = null, min: String = null, optimum: String = null, accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -2484,6 +2596,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val nav: NAV = NAV()
@@ -2521,6 +2635,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val noscript: NOSCRIPT = NOSCRIPT()
@@ -2558,6 +2674,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val `object`: OBJECT = OBJECT()
@@ -2601,6 +2719,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val ol: OL = OL()
@@ -2642,6 +2762,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val optgroup: OPTGROUP = OPTGROUP()
@@ -2681,6 +2803,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val option: OPTION = OPTION()
@@ -2722,6 +2846,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val output: OUTPUT = OUTPUT()
@@ -2762,6 +2888,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val p: P = P()
@@ -2799,6 +2927,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val param: PARAM = PARAM()
@@ -2832,8 +2962,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val pre: PRE = PRE()
   final case class PRE(accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -2870,6 +3001,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val progress: PROGRESS = PROGRESS()
@@ -2909,6 +3042,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val q: Q = Q()
@@ -2947,6 +3082,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val rp: RP = RP()
@@ -2984,6 +3121,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val rt: RT = RT()
@@ -3021,6 +3160,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val ruby: RUBY = RUBY()
@@ -3058,6 +3199,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val s: S = S()
@@ -3095,6 +3238,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val samp: SAMP = SAMP()
@@ -3132,6 +3277,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val script: SCRIPT = SCRIPT()
@@ -3174,6 +3321,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val section: SECTION = SECTION()
@@ -3211,6 +3360,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val select: SELECT = SELECT()
@@ -3255,6 +3406,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val small: SMALL = SMALL()
@@ -3292,6 +3445,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val source: SOURCE = SOURCE()
@@ -3326,8 +3481,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val span: SPAN = SPAN()
   final case class SPAN(accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -3364,6 +3520,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val strong: STRONG = STRONG()
@@ -3401,6 +3559,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val style: STYLE = STYLE()
@@ -3441,6 +3601,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val sub: SUB = SUB()
@@ -3478,6 +3640,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val summary: SUMMARY = SUMMARY()
@@ -3515,6 +3679,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val sup: SUP = SUP()
@@ -3552,6 +3718,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val table: TABLE = TABLE()
@@ -3591,6 +3759,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val tbody: TBODY = TBODY()
@@ -3628,6 +3798,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val td: TD = TD()
@@ -3667,6 +3839,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val textarea: TEXTAREA = TEXTAREA()
@@ -3715,6 +3889,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val tfoot: TFOOT = TFOOT()
@@ -3752,6 +3928,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val th: TH = TH()
@@ -3795,6 +3973,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val thead: THEAD = THEAD()
@@ -3832,6 +4012,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val time: TIME = TIME()
@@ -3870,6 +4052,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val title: TITLE = TITLE()
@@ -3907,6 +4091,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val tr: TR = TR()
@@ -3944,6 +4130,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val track: TRACK = TRACK()
@@ -3980,8 +4168,9 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }
   final val u: U = U()
   final case class U(accesskey: String = null, cls: String = null, contenteditable: String = null, contextmenu: String = null, dir: String = null, draggable: String = null, dropzone: String = null, id: String = null, lang: String = null, spellcheck: String = null, style: String = null, tabindex: String = null, title: String = null, translate: String = null, role: String = null, itemtype: String = null, itemprop: String = null, onclick: String = null, hidden: Boolean = false, itemscope: Boolean = false, data: Map[String,String] = Map.empty, aria: Map[String,String] = Map.empty, attrs: Map[String,String] = Map.empty) extends Html5Tag { self =>
@@ -4018,6 +4207,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val ul: UL = UL()
@@ -4055,6 +4246,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val variable: VARIABLE = VARIABLE()
@@ -4092,6 +4285,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val video: VIDEO = VIDEO()
@@ -4138,6 +4333,8 @@ trait Html5 {
       appendExtra("", attrs)
       ctx.append(">")
     }
+    final def openTag: String = captureConcise(open()(_))
+    final def closeTag: String = captureConcise(close()(_))
   }
       
   final val wbr: WBR = WBR()
@@ -4169,6 +4366,7 @@ trait Html5 {
       appendExtra("data-", data)
       appendExtra("aria-", aria)
       appendExtra("", attrs)
-      ctx.append(">")
+      ctx.append("/>")
     }
+    final def tag: String = captureConcise(apply()(_))
   }}
