@@ -2,8 +2,6 @@ FMPublic
 
 name := "fm-html"
 
-version := "0.5.0-SNAPSHOT"
-
 description := "A Simple HTML5 DSL for Scala"
 
 scalaVersion := "2.12.4"
