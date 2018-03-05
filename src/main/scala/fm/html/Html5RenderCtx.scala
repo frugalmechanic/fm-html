@@ -1,6 +1,6 @@
 package fm.html
 
-import org.apache.commons.lang3.{StringEscapeUtils, StringUtils}
+import org.apache.commons.lang3.StringEscapeUtils
 
 object Html5RenderCtx {
   
@@ -22,7 +22,11 @@ trait Html5RenderCtx {
   }
 
   private[html] final def appendAttribute(name: String, value: String): Unit = {
-    if ((value eq null) || value == "" || StringUtils.isBlank(name)) return
+    // If the value is null then do not output it.
+    // Note: If the value is blank we still want to output it since these behave differently:
+    //       <option>Unselected</option>          <!-- value defaults to "Unselected" -->
+    //       <option value="">Unselected</option> <!-- value is "" -->
+    if (value eq null) return
 
     append(" ")
     append(name)

@@ -34,8 +34,12 @@ final class TestHtml5 extends FunSuite with Matchers {
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.br() } should equal("""<br>""")
   }
 
-  test("Ignore Blank Attribute Values") {
-    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "") { "bar" } } should equal("""<div>bar</div>""")
+  test("Include Blank Attribute Values") {
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "") { "bar" } } should equal("""<div id="">bar</div>""")
+    Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = "  ") { "bar" } } should equal("""<div id="  ">bar</div>""")
+  }
+
+  test("Ignore Null Attribute Values") {
     Html5StringBuilder.captureConcise{ implicit ctx => Html5.DIV(id = null) { "bar" } } should equal("""<div>bar</div>""")
   }
 }
