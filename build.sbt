@@ -4,7 +4,7 @@ name := "fm-html"
 
 description := "A Simple HTML5 DSL for Scala"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.6"
 
 scalacOptions := Seq(
   "-unchecked",
