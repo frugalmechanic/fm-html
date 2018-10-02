@@ -4,7 +4,7 @@ name := "fm-html"
 
 description := "A Simple HTML5 DSL for Scala"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.7"
 
 scalacOptions := Seq(
   "-unchecked",
@@ -20,6 +20,6 @@ scalacOptions := Seq(
 ) else Nil)
 
 libraryDependencies ++= Seq(
-  "org.apache.commons" % "commons-lang3" % "3.5",
-  "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+  "org.apache.commons" % "commons-lang3" % "3.8.1",
+  "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
