@@ -33,9 +33,7 @@ trait Html5Tag {
   def itemscope: Boolean
 }
 
-object Html5 extends Html5
-
-trait Html5 {
+object Html5 {
   final implicit def unitToString(unit: Unit): String = ""
   final implicit def optionToString(opt: Option[String]): String = opt.orNull
 

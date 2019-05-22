@@ -15,7 +15,7 @@ object Html5StringBuilder {
   }
 }
 
-final class Html5StringBuilder(formatted: Boolean) extends Html5 {
+final class Html5StringBuilder(formatted: Boolean) {
   private val sb: StringBuilder = new StringBuilder()
   implicit val html5RenderCtx: Html5RenderCtx = if (formatted) new FormattedHtml5RenderCtx(sb) else new ConciseHtml5RenderCtx(sb)
   
