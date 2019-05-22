@@ -20,6 +20,6 @@ scalacOptions := Seq(
 ) else Nil)
 
 libraryDependencies ++= Seq(
-  "org.apache.commons" % "commons-lang3" % "3.8.1",
+  "org.apache.commons" % "commons-text" % "1.6",
   "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
