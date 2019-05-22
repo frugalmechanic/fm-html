@@ -17,7 +17,7 @@ object Html5CodeGen {
 package fm.html
 
 import java.net.{URLEncoder, URLDecoder}
-import org.apache.commons.lang3.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 
 trait Html5Tag {
 """
