@@ -4,9 +4,9 @@ name := "fm-html"
 
 description := "A Simple HTML5 DSL for Scala"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.13.5"
 
-crossScalaVersions := Seq("2.12.10", "2.13.1")
+crossScalaVersions := Seq("2.12.13", "2.13.5")
 
 val fatalWarnings = Seq(
   // Enable -Xlint, but disable the default 'unused' so we can manually specify below
@@ -35,6 +35,6 @@ scalacOptions in (Test, console) --= fatalWarnings
 scalacOptions in (Compile, doc) --= fatalWarnings
 
 libraryDependencies ++= Seq(
-  "org.apache.commons" % "commons-text" % "1.6",
-  "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+  "org.apache.commons" % "commons-text" % "1.9",
+  "org.scalatest" %% "scalatest" % "3.2.2" % "test"
 )
