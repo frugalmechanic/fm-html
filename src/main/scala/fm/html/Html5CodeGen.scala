@@ -131,7 +131,7 @@ object Html5 {
     openBodyLines += """appendExtra("aria-", aria)"""
     openBodyLines += """appendExtra("", attrs)"""
     
-    val openBody: String = openBodyLines.result.map{ "      "+_ }.mkString("\n")
+    val openBody: String = openBodyLines.result().map{ "      "+_ }.mkString("\n")
     
     val incrementIndent: String = if (tag.isBlock) "ctx.incrementIndent(); " else ""
     val decrementIndent: String = if (tag.isBlock) "ctx.decrementIndent(); " else ""
