@@ -21,9 +21,9 @@ import org.apache.commons.text.StringEscapeUtils
 
 trait Html5Tag {
 """
-    sb ++= globalAttributes.map{ fixParamName }.map{ p: String => s"  def $p: String" }.mkString("\n")
+    sb ++= globalAttributes.map{ fixParamName }.map{ (p: String) => s"  def $p: String" }.mkString("\n")
     sb ++= "\n"
-    sb ++= globalBooleanAttributes.map{ fixParamName }.map{ p: String => s"  def $p: Boolean" }.mkString("\n")
+    sb ++= globalBooleanAttributes.map{ fixParamName }.map{ (p: String) => s"  def $p: Boolean" }.mkString("\n")
     
     sb ++= """
 }
@@ -100,10 +100,10 @@ object Html5 {
   private def paramDefsForTag(tag: TagDef, extra: Seq[String], useRequiredParamDefault: Boolean = false, useSelfDefault: Boolean = false): String = {
     def defaultForParam(p: String, default: String): String = if (useSelfDefault) s" = self.$p" else default
 
-    val requiredParams: Seq[String] = tag.required.map{ fixParamName }.map{ p: String => s"$p: String${defaultForParam(p, if (useRequiredParamDefault) " = null" else "")}" }
-    val optionalParams: Seq[String] = tag.optional.map{ fixParamName }.map{ p: String => s"$p: String${defaultForParam(p, " = null")}" }
-    val boolParams: Seq[String] = tag.boolean.map{ fixParamName }.map{ p: String => s"$p: Boolean${defaultForParam(p, " = false")}" }
-    val extraParams: Seq[String] = extra.map{ fixParamName }.map{ p: String => s"$p: Map[String,String]${defaultForParam(p, " = Map.empty")}" }
+    val requiredParams: Seq[String] = tag.required.map{ fixParamName }.map{ (p: String) => s"$p: String${defaultForParam(p, if (useRequiredParamDefault) " = null" else "")}" }
+    val optionalParams: Seq[String] = tag.optional.map{ fixParamName }.map{ (p: String) => s"$p: String${defaultForParam(p, " = null")}" }
+    val boolParams: Seq[String] = tag.boolean.map{ fixParamName }.map{ (p: String) => s"$p: Boolean${defaultForParam(p, " = false")}" }
+    val extraParams: Seq[String] = extra.map{ fixParamName }.map{ (p: String) => s"$p: Map[String,String]${defaultForParam(p, " = Map.empty")}" }
     
     (requiredParams ++ optionalParams ++ boolParams ++ extraParams).mkString(", ")
   }
@@ -125,8 +125,8 @@ object Html5 {
     
     val openBodyLines = Vector.newBuilder[String]
     
-    openBodyLines ++= (tag.required ++ tag.optional).map{ p: String => s"""if (${fixParamName(p)} ne null) ctx.appendAttribute("$p", ${fixParamName(p)})""" }
-    openBodyLines ++= tag.boolean.map{ p: String => s"""if (${fixParamName(p)}) ctx.append(" $p")""" }
+    openBodyLines ++= (tag.required ++ tag.optional).map{ (p: String) => s"""if (${fixParamName(p)} ne null) ctx.appendAttribute("$p", ${fixParamName(p)})""" }
+    openBodyLines ++= tag.boolean.map{ (p: String) => s"""if (${fixParamName(p)}) ctx.append(" $p")""" }
     if (useDataParam) openBodyLines += """appendExtra("data-", data)"""
     openBodyLines += """appendExtra("aria-", aria)"""
     openBodyLines += """appendExtra("", attrs)"""
@@ -162,7 +162,7 @@ $openBody
       """.stripLineEnd
     } else {
       val noParamsApply = if (tag.required.isEmpty) s"""final def apply(implicit ctx: Html5RenderCtx): Unit = { ${appendOpeningIndent}ctx.append("<$name>") }""" else ""
-    s"""
+      s"""
   final val ${tag.valName}: $className = $className()
   final case class $className($caseClassParams) extends Html5Tag { self =>
     $noParamsApply
